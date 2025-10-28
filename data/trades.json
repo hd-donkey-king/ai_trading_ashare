@@ -1,14 +1,6 @@
 {
     "trades": [
         {
-            "timestamp": "2025-10-28T9:35:00Z",
-            "action": "BUY",
-            "symbol": "600584",
-            "shares": 100,
-            "price": 42.76,
-            "profitability": "entry"
-        },
-        {
             "timestamp": "2025-10-27T9:35:00Z",
             "action": "BUY",
             "symbol": "002600",
@@ -31,8 +23,7 @@
             "shares": 100,
             "price": 14.35,
             "profitability": "entry"
-        }
-        ,
+        },
         {
             "timestamp": "2025-10-27T9:35:00Z",
             "action": "BUY",
@@ -63,6 +54,14 @@
             "symbol": "601231",
             "shares": 100,
             "price": 25.31,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-28T9:35:00Z",
+            "action": "BUY",
+            "symbol": "600584",
+            "shares": 100,
+            "price": 42.76,
             "profitability": "entry"
         }
     ]
