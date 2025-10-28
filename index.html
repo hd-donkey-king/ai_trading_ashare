@@ -555,9 +555,33 @@
             
             tbody.innerHTML = recentTrades.map(trade => {
                 const tradeAmount = trade.shares * trade.price;
+                
+                // Fix date parsing - handle multiple timestamp formats
+                let displayDate;
+                try {
+                    // Try to parse the timestamp (handles both ISO format and other formats)
+                    const date = new Date(trade.timestamp);
+                    if (isNaN(date.getTime())) {
+                        // If parsing fails, try to handle custom formats
+                        if (trade.timestamp.includes('T')) {
+                            // ISO-like format but might need adjustment
+                            const isoString = trade.timestamp.replace(' ', 'T') + 'Z';
+                            displayDate = new Date(isoString).toLocaleDateString();
+                        } else {
+                            // Fallback to just displaying the original string
+                            displayDate = trade.timestamp.split('T')[0]; // Just show the date part
+                        }
+                    } else {
+                        displayDate = date.toLocaleDateString();
+                    }
+                } catch (error) {
+                    // Final fallback
+                    displayDate = trade.timestamp.split('T')[0] || trade.timestamp;
+                }
+                
                 return `
                 <tr>
-                    <td>${new Date(trade.timestamp).toLocaleDateString()}</td>
+                    <td>${displayDate}</td>
                     <td>
                         <span style="color: ${trade.action === 'BUY' ? '#10b981' : '#ef4444'}; 
                                      font-weight: bold;">
