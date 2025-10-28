@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trading A-Share - Portfolio Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .strategy-window {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .strategy-window h2 {
+            color: #333;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .strategy-content {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3em;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .metric-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .positive { color: #10b981; }
+        .negative { color: #ef4444; }
+        .neutral { color: #6b7280; }
+
+        .allocation-chart {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .allocation-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .allocation-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .allocation-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Trading A-Share Portfolio</h1>
+            <p>Real-time portfolio performance and analytics</p>
+        </div>
+
+        <!-- Strategy Explanation Window -->
+        <div class="strategy-window">
+            <h2>🎯 Trading Strategy Overview</h2>
+            <div class="strategy-content" id="strategyContent">
+                <!-- Content will be loaded from strategy_info.json -->
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Left Column: Portfolio Value Chart -->
+            <div class="left-column">
+                <div class="card">
+                    <h3>📊 Total Portfolio Value Over Time</h3>
+                    <div class="chart-container">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>📦 Current Holdings</h3>
+                    <div class="table-container">
+                        <table id="holdingsTable">
+                            <thead>
+                                <tr>
+                                    <th>Stock Code</th>
+                                    <th>Stock Name</th>
+                                    <th>Shares</th>
+                                    <th>Avg Cost</th>
+                                    <th>Current Price</th>
+                                    <th>Market Value</th>
+                                    <th>PnL %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Performance Metrics -->
+            <div class="right-column">
+                <div class="card">
+                    <h3>💰 Portfolio Allocation</h3>
+                    <div class="allocation-chart" id="allocationChart">
+                        <!-- Allocation data will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>📈 Performance Metrics</h3>
+                    <div class="metrics-grid" id="performanceMetrics">
+                        <!-- Metrics will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>⚡ Recent Trading Activity</h3>
+                    <div class="table-container">
+                        <table id="tradesTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                    <th>Stock</th>
+                                    <th>Shares</th>
+                                    <th>Price</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-updated" id="lastUpdated">
+            Last updated: Loading...
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let portfolioChart;
+
+        // Main data loading function
+        async function loadData() {
+            try {
+                // Load strategy information
+                const strategyResponse = await fetch('./data/strategy_info.json');
+                const strategyData = await strategyResponse.json();
+                displayStrategyInfo(strategyData);
+
+                // Load portfolio data
+                const portfolioResponse = await fetch('./data/portfolio.json');
+                const portfolioData = await portfolioResponse.json();
+
+                // Load holdings data
+                const holdingsResponse = await fetch('./data/holdings.json');
+                const holdingsData = await holdingsResponse.json();
+
+                // Load trades data
+                const tradesResponse = await fetch('./data/trades.json');
+                const tradesData = await tradesResponse.json();
+
+                // Process and display all data
+                processPortfolioData(portfolioData, holdingsData, tradesData);
+
+                // Update last updated time
+                document.getElementById('lastUpdated').textContent = 
+                    `Last updated: ${new Date().toLocaleString()}`;
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        function displayStrategyInfo(strategyData) {
+            const strategyContent = document.getElementById('strategyContent');
+            strategyContent.innerHTML = `
+                <p><strong>Strategy Name:</strong> ${strategyData.name}</p>
+                <p><strong>Description:</strong> ${strategyData.description}</p>
+                <p><strong>Time Frame:</strong> ${strategyData.timeFrame}</p>
+                <p><strong>Universe:</strong> ${strategyData.universe}</p>
+            `;
+        }
+
+        function processPortfolioData(portfolioData, holdingsData, tradesData) {
+            // Calculate current portfolio value
+            const currentCash = portfolioData.currentCash;
+            const currentPositionValue = calculateTotalPositionValue(holdingsData.holdings);
+            const totalPortfolioValue = currentCash + currentPositionValue;
+
+            // Calculate allocation percentages
+            const cashPercentage = (currentCash / totalPortfolioValue * 100).toFixed(1);
+            const positionPercentage = (currentPositionValue / totalPortfolioValue * 100).toFixed(1);
+
+            // Update portfolio value chart
+            updatePortfolioChart(portfolioData, currentPositionValue);
+
+            // Update allocation display
+            updateAllocationDisplay(cashPercentage, positionPercentage, currentCash, currentPositionValue);
+
+            // Update performance metrics
+            updatePerformanceMetrics(portfolioData, holdingsData, tradesData, totalPortfolioValue);
+
+            // Update holdings table
+            updateHoldingsTable(holdingsData.holdings);
+
+            // Update trades table
+            updateTradesTable(tradesData.trades);
+        }
+
+        function calculateTotalPositionValue(holdings) {
+            return holdings.reduce((total, holding) => {
+                return total + (holding.shares * holding.currentPrice);
+            }, 0);
+        }
+
+        function updatePortfolioChart(portfolioData, currentPositionValue) {
+            const ctx = document.getElementById('portfolioChart').getContext('2d');
+            
+            // Calculate total portfolio value for each historical date
+            const totalPortfolioValues = portfolioData.historicalDates.map((date, index) => {
+                const historicalCash = portfolioData.historicalCash[index];
+                const historicalPositions = portfolioData.historicalPositionValues[index];
+                return historicalCash + historicalPositions;
+            });
+
+            // Add current data point
+            const currentCash = portfolioData.currentCash;
+            const allDates = [...portfolioData.historicalDates, portfolioData.currentDate];
+            const allValues = [...totalPortfolioValues, currentCash + currentPositionValue];
+
+            if (portfolioChart) {
+                portfolioChart.destroy();
+            }
+
+            portfolioChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: allDates,
+                    datasets: [{
+                        label: 'Total Portfolio Value (¥)',
+                        data: allValues,
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Portfolio Value: ¥${context.parsed.y.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'Portfolio Value (¥)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '¥' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateAllocationDisplay(cashPercentage, positionPercentage, currentCash, currentPositionValue) {
+            document.getElementById('allocationChart').innerHTML = `
+                <div class="allocation-item">
+                    <div class="allocation-value" style="color: #10b981;">${cashPercentage}%</div>
+                    <div class="allocation-label">Cash</div>
+                    <div style="font-size: 0.8em; color: #666; margin-top: 5px;">
+                        ¥${currentCash.toLocaleString()}
+                    </div>
+                </div>
+                <div class="allocation-item">
+                    <div class="allocation-value" style="color: #667eea;">${positionPercentage}%</div>
+                    <div class="allocation-label">Positions</div>
+                    <div style="font-size: 0.8em; color: #666; margin-top: 5px;">
+                        ¥${currentPositionValue.toLocaleString()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function updatePerformanceMetrics(portfolioData, holdingsData, tradesData, totalPortfolioValue) {
+            // Calculate various metrics
+            const initialPortfolioValue = portfolioData.initialPortfolioValue;
+            const totalPnL = totalPortfolioValue - initialPortfolioValue;
+            const totalPnLPercentage = ((totalPnL / initialPortfolioValue) * 100).toFixed(2);
+            
+            const daysTraded = portfolioData.daysTraded;
+            const totalTrades = tradesData.trades.length;
+            
+            // Calculate win rate (simplified - in reality you'd track winning trades)
+            const winRate = calculateWinRate(tradesData.trades);
+            
+            // Calculate max drawdown (simplified)
+            const maxDrawdown = calculateMaxDrawdown(portfolioData);
+            
+            // Calculate Sharpe ratio (annualized, simplified)
+            const sharpeRatio = calculateSharpeRatio(portfolioData);
+
+            document.getElementById('performanceMetrics').innerHTML = `
+                <div class="metric-card">
+                    <div class="metric-value ${totalPnL >= 0 ? 'positive' : 'negative'}">
+                        ${totalPnL >= 0 ? '+' : ''}${totalPnLPercentage}%
+                    </div>
+                    <div class="metric-label">Total PnL</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">${daysTraded}</div>
+                    <div class="metric-label">Days Traded</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">${totalTrades}</div>
+                    <div class="metric-label">Total Trades</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">${winRate}%</div>
+                    <div class="metric-label">Win Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value negative">${maxDrawdown}%</div>
+                    <div class="metric-label">Max Drawdown</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">${sharpeRatio}</div>
+                    <div class="metric-label">Sharpe Ratio</div>
+                </div>
+            `;
+        }
+
+        function calculateWinRate(trades) {
+            // Simplified win rate calculation
+            // In reality, you'd track which trades were profitable
+            if (trades.length === 0) return 0;
+            const profitableTrades = trades.filter(trade => trade.profitability === 'win').length;
+            return ((profitableTrades / trades.length) * 100).toFixed(1);
+        }
+
+        function calculateMaxDrawdown(portfolioData) {
+            // Simplified max drawdown calculation
+            const values = portfolioData.historicalPortfolioValues || [];
+            if (values.length === 0) return 0;
+            
+            let peak = values[0];
+            let maxDrawdown = 0;
+            
+            for (let value of values) {
+                if (value > peak) peak = value;
+                const drawdown = ((peak - value) / peak) * 100;
+                if (drawdown > maxDrawdown) maxDrawdown = drawdown;
+            }
+            
+            return maxDrawdown.toFixed(1);
+        }
+
+        function calculateSharpeRatio(portfolioData) {
+            // Simplified Sharpe ratio calculation (annualized)
+            const returns = portfolioData.dailyReturns || [];
+            if (returns.length < 2) return 'N/A';
+            
+            const avgReturn = returns.reduce((a, b) => a + b, 0) / returns.length;
+            const stdDev = Math.sqrt(returns.reduce((a, b) => a + Math.pow(b - avgReturn, 2), 0) / returns.length);
+            
+            if (stdDev === 0) return 'N/A';
+            
+            const sharpe = (avgReturn / stdDev) * Math.sqrt(252); // Annualize
+            return sharpe.toFixed(2);
+        }
+
+        function updateHoldingsTable(holdings) {
+            const tbody = document.querySelector('#holdingsTable tbody');
+            tbody.innerHTML = holdings.map(holding => {
+                const marketValue = holding.shares * holding.currentPrice;
+                const costBasis = holding.shares * holding.avgCost;
+                const pnlPercentage = ((marketValue - costBasis) / costBasis * 100);
+                
+                return `
+                <tr>
+                    <td><strong>${holding.symbol}</strong></td>
+                    <td>${holding.name}</td>
+                    <td>${holding.shares.toLocaleString()}</td>
+                    <td>¥${holding.avgCost.toFixed(2)}</td>
+                    <td>¥${holding.currentPrice.toFixed(2)}</td>
+                    <td>¥${marketValue.toLocaleString()}</td>
+                    <td class="${pnlPercentage >= 0 ? 'positive' : 'negative'}">
+                        ${pnlPercentage >= 0 ? '+' : ''}${pnlPercentage.toFixed(2)}%
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        }
+
+        function updateTradesTable(trades) {
+            const tbody = document.querySelector('#tradesTable tbody');
+            // Show only last 6 trades
+            const recentTrades = trades.slice(-6);
+            
+            tbody.innerHTML = recentTrades.map(trade => {
+                const tradeAmount = trade.shares * trade.price;
+                return `
+                <tr>
+                    <td>${new Date(trade.timestamp).toLocaleDateString()}</td>
+                    <td>
+                        <span style="color: ${trade.action === 'BUY' ? '#10b981' : '#ef4444'}; 
+                                     font-weight: bold;">
+                            ${trade.action}
+                        </span>
+                    </td>
+                    <td><strong>${trade.symbol}</strong></td>
+                    <td>${trade.shares.toLocaleString()}</td>
+                    <td>¥${trade.price.toFixed(2)}</td>
+                    <td>¥${tradeAmount.toLocaleString()}</td>
+                </tr>
+                `;
+            }).join('');
+        }
+
+        // Auto-refresh data every 60 seconds
+        setInterval(loadData, 60000);
+
+        // Initial load
+        loadData();
+    </script>
+</body>
+</html>

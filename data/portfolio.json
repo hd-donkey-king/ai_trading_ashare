@@ -1,0 +1,11 @@
+{
+    "currentCash": 5701.3,
+    "currentDate": "2025-10-27",
+    "initialPortfolioValue": 25295.9,
+    "daysTraded": 1,
+    "historicalDates": ["2025-10-24", "2025-10-27"],
+    "historicalCash": [25295.9, 5701.3],
+    "historicalPositionValues": [0, 19724],
+    "historicalPortfolioValues": [25295.9, 25425.3],
+    "dailyReturns": [0, 0.00511545]
+}

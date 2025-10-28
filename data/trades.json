@@ -1,0 +1,69 @@
+{
+    "trades": [
+        {
+            "timestamp": "2025-10-28T9:35:00Z",
+            "action": "BUY",
+            "symbol": "600584",
+            "shares": 100,
+            "price": 42.76,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-27T9:35:00Z",
+            "action": "BUY",
+            "symbol": "002600",
+            "shares": 200,
+            "price": 15.73,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-27T9:35:00Z",
+            "action": "BUY",
+            "symbol": "300136",
+            "shares": 200,
+            "price": 30.67,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-27T9:35:00Z",
+            "action": "BUY",
+            "symbol": "603890",
+            "shares": 100,
+            "price": 14.35,
+            "profitability": "entry"
+        }
+        ,
+        {
+            "timestamp": "2025-10-27T9:35:00Z",
+            "action": "BUY",
+            "symbol": "600460",
+            "shares": 100,
+            "price": 32.1,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-27T9:35:00Z",
+            "action": "BUY",
+            "symbol": "603890",
+            "shares": 100,
+            "price": 14.35,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-27T9:35:00Z",
+            "action": "BUY",
+            "symbol": "000021",
+            "shares": 100,
+            "price": 30.58,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-27T9:35:00Z",
+            "action": "BUY",
+            "symbol": "601231",
+            "shares": 100,
+            "price": 25.31,
+            "profitability": "entry"
+        }
+    ]
+}
