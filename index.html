@@ -561,13 +561,20 @@
             tbody.innerHTML = recentTrades.map(trade => {
                 const tradeAmount = trade.shares * trade.price;
                 
-                // Simple date extraction - takes just the date part (YYYY-MM-DD)
-                const datePart = trade.timestamp.split('T')[0];
-                const displayDate = datePart || trade.timestamp;
+                // Parse the timestamp and format to display both date and time
+                const tradeDate = new Date(trade.timestamp);
+                const displayDateTime = tradeDate.toLocaleString('zh-CN', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
                 
                 return `
                 <tr>
-                    <td>${displayDate}</td>
+                    <td>${displayDateTime}</td>
                     <td>
                         <span style="color: ${trade.action === 'BUY' ? '#10b981' : '#ef4444'}; 
                                      font-weight: bold;">
