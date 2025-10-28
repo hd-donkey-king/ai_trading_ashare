@@ -5,7 +5,7 @@
 本仓库展示一个基于人工智能的A股短线交易策略，结合豆包和Grok两大AI模型进行投资决策。
 
 ## 网址
-[策略收益及持仓](https://hd-donkey-king.github.io/ai_trading_ashare/m)
+[策略收益及持仓](https://hd-donkey-king.github.io/ai_trading_ashare/)
 
 
 ## 核心策略
