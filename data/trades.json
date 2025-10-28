@@ -3,7 +3,7 @@
         {
             "timestamp": "2025-10-27 9:26:01",
             "action": "BUY",
-            "symbol": "601231",
+            "symbol": "环旭电子",
             "shares": 100,
             "price": 25.31,
             "profitability": "entry"
@@ -11,7 +11,7 @@
         {
             "timestamp": "2025-10-27 9:31:06",
             "action": "BUY",
-            "symbol": "000021",
+            "symbol": "深科技",
             "shares": 100,
             "price": 30.58,
             "profitability": "entry"
@@ -19,7 +19,7 @@
         {
             "timestamp": "2025-10-27 9:31:36",
             "action": "BUY",
-            "symbol": "002600",
+            "symbol": "领益智造",
             "shares": 100,
             "price": 15.66,
             "profitability": "entry"
@@ -27,7 +27,7 @@
         {
             "timestamp": "2025-10-27 9:35:36",
             "action": "BUY",
-            "symbol": "600460",
+            "symbol": "士兰微",
             "shares": 100,
             "price": 32.1,
             "profitability": "entry"
@@ -35,7 +35,7 @@
         {
             "timestamp": "2025-10-27 9:35:00",
             "action": "BUY",
-            "symbol": "603890",
+            "symbol": "春秋电子",
             "shares": 100,
             "price": 14.35,
             "profitability": "entry"
@@ -43,7 +43,7 @@
         {
             "timestamp": "2025-10-27 10:25:40",
             "action": "BUY",
-            "symbol": "300136",
+            "symbol": "信维通信",
             "shares": 100,
             "price": 30.85,
             "profitability": "entry"
@@ -51,7 +51,7 @@
         {
             "timestamp": "2025-10-27 10:28:21",
             "action": "BUY",
-            "symbol": "002600",
+            "symbol": "领益智造",
             "shares": 100,
             "price": 15.8,
             "profitability": "entry"
@@ -59,7 +59,7 @@
         {
             "timestamp": "2025-10-28 9:31:55",
             "action": "BUY",
-            "symbol": "600584",
+            "symbol": "长电科技",
             "shares": 100,
             "price": 42.76,
             "profitability": "entry"
