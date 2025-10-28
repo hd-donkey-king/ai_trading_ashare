@@ -183,13 +183,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🤖 AI Trading A-Share Portfolio</h1>
-            <p>Real-time portfolio performance and analytics</p>
+            <h1>🤖 用AI大语言模型(LLM)实盘交易A股</h1>
+            <p>实时策略持仓与表现</p>
         </div>
 
         <!-- Strategy Explanation Window -->
         <div class="strategy-window">
-            <h2>🎯 Trading Strategy Overview</h2>
+            <h2>🎯 策略概述</h2>
             <div class="strategy-content" id="strategyContent">
                 <!-- Content will be loaded from strategy_info.json -->
             </div>
@@ -200,25 +200,25 @@
             <!-- Left Column: Portfolio Value Chart -->
             <div class="left-column">
                 <div class="card">
-                    <h3>📊 Total Portfolio Value Over Time</h3>
+                    <h3>📊 总资产变化</h3>
                     <div class="chart-container">
                         <canvas id="portfolioChart"></canvas>
                     </div>
                 </div>
                 
                 <div class="card">
-                    <h3>📦 Current Holdings</h3>
+                    <h3>📦 当前持仓</h3>
                     <div class="table-container">
                         <table id="holdingsTable">
                             <thead>
                                 <tr>
-                                    <th>Stock Code</th>
-                                    <th>Stock Name</th>
-                                    <th>Shares</th>
-                                    <th>Avg Cost</th>
-                                    <th>Current Price</th>
-                                    <th>Market Value</th>
-                                    <th>PnL %</th>
+                                    <th>股票代码</th>
+                                    <th>公司名称</th>
+                                    <th>股数</th>
+                                    <th>成本</th>
+                                    <th>现价</th>
+                                    <th>市值</th>
+                                    <th>盈亏 %</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -232,31 +232,31 @@
             <!-- Right Column: Performance Metrics -->
             <div class="right-column">
                 <div class="card">
-                    <h3>💰 Portfolio Allocation</h3>
+                    <h3>💰 持仓比</h3>
                     <div class="allocation-chart" id="allocationChart">
                         <!-- Allocation data will be populated by JavaScript -->
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3>📈 Performance Metrics</h3>
+                    <h3>📈 策略表现</h3>
                     <div class="metrics-grid" id="performanceMetrics">
                         <!-- Metrics will be populated by JavaScript -->
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3>⚡ Recent Trading Activity</h3>
+                    <h3>⚡ 最近交易</h3>
                     <div class="table-container">
                         <table id="tradesTable">
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                    <th>Stock</th>
-                                    <th>Shares</th>
-                                    <th>Price</th>
-                                    <th>Amount</th>
+                                    <th>时间</th>
+                                    <th>状态</th>
+                                    <th>股票代码</th>
+                                    <th>股数</th>
+                                    <th>价格</th>
+                                    <th>金额</th>
                                 </tr>
                             </thead>
                             <tbody>
