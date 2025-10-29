@@ -454,8 +454,11 @@
             const daysTraded = portfolioData.daysTraded;
             const totalTrades = tradesData.trades.length;
             
-            // Calculate win rate (simplified - in reality you'd track winning trades)
+            // Calculate win rate
             const winRate = calculateWinRate(tradesData.trades);
+            
+            // Calculate profit factor
+            const profitFactor = calculateProfitFactor(tradesData.trades);
             
             // Calculate max drawdown (simplified)
             const maxDrawdown = calculateMaxDrawdown(portfolioData);
@@ -483,6 +486,10 @@
                     <div class="metric-label">Win Rate</div>
                 </div>
                 <div class="metric-card">
+                    <div class="metric-value">${profitFactor}</div>
+                    <div class="metric-label">Profit Factor</div>
+                </div>
+                <div class="metric-card">
                     <div class="metric-value negative">${maxDrawdown}%</div>
                     <div class="metric-label">Max Drawdown</div>
                 </div>
@@ -494,11 +501,36 @@
         }
 
         function calculateWinRate(trades) {
-            // Simplified win rate calculation
-            // In reality, you'd track which trades were profitable
-            if (trades.length === 0) return 0;
-            const profitableTrades = trades.filter(trade => trade.profitability === 'win').length;
-            return ((profitableTrades / trades.length) * 100).toFixed(1);
+            // Filter out entry trades (where profitability is not a number)
+            const closedTrades = trades.filter(trade => typeof trade.profitability === 'number');
+            
+            if (closedTrades.length === 0) return 0;
+            
+            const profitableTrades = closedTrades.filter(trade => trade.profitability > 0).length;
+            return ((profitableTrades / closedTrades.length) * 100).toFixed(1);
+        }
+
+        function calculateProfitFactor(trades) {
+            // Filter out entry trades (where profitability is not a number)
+            const closedTrades = trades.filter(trade => typeof trade.profitability === 'number');
+            
+            if (closedTrades.length === 0) return 'N/A';
+            
+            let totalProfit = 0;
+            let totalLoss = 0;
+            
+            closedTrades.forEach(trade => {
+                if (trade.profitability > 0) {
+                    totalProfit += trade.profitability;
+                } else {
+                    totalLoss += Math.abs(trade.profitability);
+                }
+            });
+            
+            // Avoid division by zero
+            if (totalLoss === 0) return totalProfit > 0 ? '∞' : 'N/A';
+            
+            return (totalProfit / totalLoss).toFixed(2);
         }
 
         function calculateMaxDrawdown(portfolioData) {
