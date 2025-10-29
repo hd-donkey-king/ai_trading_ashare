@@ -1,13 +1,6 @@
 {
     "holdings": [
         {
-            "symbol": "300136",
-            "name": "信维通信",
-            "shares": 200,
-            "avgCost": 30.761,
-            "currentPrice": 31.83
-        },
-        {
             "symbol": "600460",
             "name": "士兰微",
             "shares": 100,
@@ -29,13 +22,6 @@
             "currentPrice": 29.46
         },
         {
-            "symbol": "601231",
-            "name": "环旭电子",
-            "shares": 100,
-            "avgCost": 25.424,
-            "currentPrice": 26.2
-        },
-        {
             "symbol": "603890",
             "name": "春秋电子",
             "shares": 100,
@@ -43,11 +29,25 @@
             "currentPrice": 14.52
         },
         {
-            "symbol": "600584",
-            "name": "长电科技",
+            "symbol": "002074",
+            "name": "国轩高科",
             "shares": 100,
-            "avgCost": 42.883,
-            "currentPrice": 41.89
+            "avgCost": 45.405,
+            "currentPrice": 45.98
+        },
+        {
+            "symbol": "300409",
+            "name": "道氏技术",
+            "shares": 100,
+            "avgCost": 24.774,
+            "currentPrice": 24.8
+        },
+        {
+            "symbol": "300035",
+            "name": "中科电气",
+            "shares": 100,
+            "avgCost": 26.365,
+            "currentPrice": 26.49
         }
     ]
 }

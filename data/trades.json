@@ -41,6 +41,14 @@
             "profitability": "entry"
         },
         {
+            "timestamp": "2025-10-27 9:48:06",
+            "action": "BUY",
+            "symbol": "信维通信",
+            "shares": 100,
+            "price": 30.49,
+            "profitability": "entry"
+        },
+        {
             "timestamp": "2025-10-27 10:25:40",
             "action": "BUY",
             "symbol": "信维通信",
@@ -62,6 +70,62 @@
             "symbol": "长电科技",
             "shares": 100,
             "price": 42.76,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-29 9:35:16",
+            "action": "SELL",
+            "symbol": "信维通信",
+            "shares": 100,
+            "price": 32.5,
+            "profitability": 174
+        },
+        {
+            "timestamp": "2025-10-29 9:51:19",
+            "action": "SELL",
+            "symbol": "信维通信",
+            "shares": 100,
+            "price": 33.13,
+            "profitability": 237
+        },
+        {
+            "timestamp": "2025-10-29 9:51:11",
+            "action": "SELL",
+            "symbol": "环旭电子",
+            "shares": 100,
+            "price": 27.15,
+            "profitability": 173
+        },
+        {
+            "timestamp": "2025-10-29 10:33:34",
+            "action": "SELL",
+            "symbol": "长电科技",
+            "shares": 100,
+            "price": 41.6,
+            "profitability": -128
+        },
+        {
+            "timestamp": "2025-10-29 10:35:27",
+            "action": "BUY",
+            "symbol": "国轩高科",
+            "shares": 100,
+            "price": 45.28,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-29 11:04:41",
+            "action": "BUY",
+            "symbol": "道氏技术",
+            "shares": 100,
+            "price": 24.66,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-29 11:04:48",
+            "action": "BUY",
+            "symbol": "中科电气",
+            "shares": 100,
+            "price": 26.25,
             "profitability": "entry"
         }
     ]
