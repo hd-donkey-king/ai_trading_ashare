@@ -285,6 +285,7 @@
         let portfolioChart;
 
         // Main data loading function
+        // Main data loading function
         async function loadData() {
             try {
                 // Load strategy information
@@ -307,9 +308,20 @@
                 // Process and display all data
                 processPortfolioData(portfolioData, holdingsData, tradesData);
 
-                // Update last updated time
+                // Update last updated time in Beijing time
+                const beijingTime = new Date().toLocaleString('en-US', {
+                    timeZone: 'Asia/Shanghai',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).replace(/(\d+)\/(\d+)\/(\d+),/, '$3-$1-$2');
+                
                 document.getElementById('lastUpdated').textContent = 
-                    `Last updated: ${new Date().toLocaleString()}`;
+                    `最后更新时间: ${beijingTime}`;
 
             } catch (error) {
                 console.error('Error loading data:', error);
