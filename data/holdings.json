@@ -5,7 +5,7 @@
             "name": "士兰微",
             "shares": 100,
             "avgCost": 32.218,
-            "currentPrice": 32.27
+            "currentPrice": 32.63
         },
         {
             "symbol": "002600",
@@ -19,35 +19,35 @@
             "name": "深科技",
             "shares": 100,
             "avgCost": 30.696,
-            "currentPrice": 29.46
+            "currentPrice": 29.81
         },
         {
             "symbol": "603890",
             "name": "春秋电子",
             "shares": 100,
             "avgCost": 14.458,
-            "currentPrice": 14.52
+            "currentPrice": 14.8
         },
         {
             "symbol": "002074",
             "name": "国轩高科",
             "shares": 100,
             "avgCost": 45.405,
-            "currentPrice": 45.98
+            "currentPrice": 46
         },
         {
             "symbol": "300409",
             "name": "道氏技术",
             "shares": 100,
             "avgCost": 24.774,
-            "currentPrice": 24.8
+            "currentPrice": 24.84
         },
         {
             "symbol": "300035",
             "name": "中科电气",
             "shares": 100,
             "avgCost": 26.365,
-            "currentPrice": 26.49
+            "currentPrice": 26.76
         }
     ]
 }
