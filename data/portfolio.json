@@ -1,11 +1,11 @@
 {
-    "currentCash": 5196.76,
-    "currentDate": "2025-10-29",
+    "currentCash": 70.08,
+    "currentDate": "2025-10-30",
     "initialPortfolioValue": 25295.9,
-    "daysTraded": 3,
-    "historicalDates": ["2025-10-24", "2025-10-27", "2025-10-28", "2025-10-29"],
-    "historicalCash": [25295.9, 5701.3, 1420.16, 5196.76],
-    "historicalPositionValues": [0, 19724, 23936, 20722],
-    "historicalPortfolioValues": [25295.9, 25425.3, 25356.26, 25919.46],
-    "dailyReturns": [0, 0.00511545, -0.003, 0.00225]
+    "daysTraded": 4,
+    "historicalDates": ["2025-10-24", "2025-10-27", "2025-10-28", "2025-10-29", "2025-10-30"],
+    "historicalCash": [25295.9, 5701.3, 1420.16, 5196.76, 70.08],
+    "historicalPositionValues": [0, 19724, 23936, 20722, 25583],
+    "historicalPortfolioValues": [25295.9, 25425.3, 25356.26, 25919.46, 25654.18],
+    "dailyReturns": [0, 0.00511545, -0.003, 0.00225, -0.0101]
 }

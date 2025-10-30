@@ -1,53 +1,53 @@
 {
     "holdings": [
         {
-            "symbol": "600460",
-            "name": "士兰微",
+            "symbol": "002487",
+            "name": "大金重工",
             "shares": 100,
-            "avgCost": 32.218,
-            "currentPrice": 32.63
+            "avgCost": 51.217,
+            "currentPrice": 49.49
         },
         {
-            "symbol": "002600",
-            "name": "领益智造",
-            "shares": 200,
-            "avgCost": 15.813,
-            "currentPrice": 16.19
+            "symbol": "002040",
+            "name": "南京港",
+            "shares": 300,
+            "avgCost": 12.43,
+            "currentPrice": 12.05
         },
         {
-            "symbol": "000021",
-            "name": "深科技",
+            "symbol": "002202",
+            "name": "金风科技",
             "shares": 100,
-            "avgCost": 30.696,
-            "currentPrice": 29.81
-        },
-        {
-            "symbol": "603890",
-            "name": "春秋电子",
-            "shares": 100,
-            "avgCost": 14.458,
-            "currentPrice": 14.8
-        },
-        {
-            "symbol": "002074",
-            "name": "国轩高科",
-            "shares": 100,
-            "avgCost": 45.405,
-            "currentPrice": 46
+            "avgCost": 16.749,
+            "currentPrice": 16.38
         },
         {
             "symbol": "300409",
             "name": "道氏技术",
             "shares": 100,
-            "avgCost": 24.774,
-            "currentPrice": 24.84
+            "avgCost": 24.773,
+            "currentPrice": 24.48
         },
         {
-            "symbol": "300035",
-            "name": "中科电气",
+            "symbol": "002074",
+            "name": "国轩高科",
             "shares": 100,
-            "avgCost": 26.364,
-            "currentPrice": 26.76
+            "avgCost": 45.404,
+            "currentPrice": 45.81
+        },
+        {
+            "symbol": "300618",
+            "name": "寒锐钴业",
+            "shares": 100,
+            "avgCost": 50.916,
+            "currentPrice": 50.75
+        },
+        {
+            "symbol": "600460",
+            "name": "士兰微",
+            "shares": 100,
+            "avgCost": 32.218,
+            "currentPrice": 32.77
         }
     ]
 }

@@ -127,6 +127,94 @@
             "shares": 100,
             "price": 26.25,
             "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-30 09:30:23",
+            "action": "SELL",
+            "symbol": "春秋电子",
+            "shares": 100,
+            "price": 15.62,
+            "profitability": 127
+        },
+        {
+            "timestamp": "2025-10-30 09:33:51",
+            "action": "SELL",
+            "symbol": "深科技",
+            "shares": 100,
+            "price": 30.51,
+            "profitability": -7
+        },
+        {
+            "timestamp": "2025-10-30 09:38:15",
+            "action": "SELL",
+            "symbol": "领益智造",
+            "shares": 100,
+            "price": 16.73,
+            "profitability": 93
+        },
+        {
+            "timestamp": "2025-10-30 09:38:15",
+            "action": "SELL",
+            "symbol": "领益智造",
+            "shares": 100,
+            "price": 16.73,
+            "profitability": 107
+        },
+        {
+            "timestamp": "2025-10-30 09:39:25",
+            "action": "SELL",
+            "symbol": "中科电气",
+            "shares": 100,
+            "price": 25.34,
+            "profitability": -91
+        },
+        {
+            "timestamp": "2025-10-30 10:26:16",
+            "action": "BUY",
+            "symbol": "寒锐钴业",
+            "shares": 100,
+            "price": 50.79,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-30 10:46:09",
+            "action": "BUY",
+            "symbol": "南京港",
+            "shares": 100,
+            "price": 12.41,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-30 10:48:15",
+            "action": "BUY",
+            "symbol": "南京港",
+            "shares": 100,
+            "price": 12.36,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-30 10:55:19",
+            "action": "BUY",
+            "symbol": "金风科技",
+            "shares": 100,
+            "price": 16.64,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-30 10:55:38",
+            "action": "BUY",
+            "symbol": "南京港",
+            "shares": 100,
+            "price": 12.3,
+            "profitability": "entry"
+        },
+        {
+            "timestamp": "2025-10-30 11:01:39",
+            "action": "BUY",
+            "symbol": "大金重工",
+            "shares": 100,
+            "price": 51.09,
+            "profitability": "entry"
         }
     ]
 }
