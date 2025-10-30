@@ -385,6 +385,10 @@
             const allDates = [...portfolioData.historicalDates, portfolioData.currentDate];
             const allValues = [...totalPortfolioValues, currentCash + currentPositionValue];
 
+            // Get market index data (assuming it's in portfolioData)
+            const marketIndexData = portfolioData.marketIndex || [];
+            const marketIndexDates = portfolioData.marketIndexDates || portfolioData.historicalDates;
+
             if (portfolioChart) {
                 portfolioChart.destroy();
             }
@@ -393,15 +397,28 @@
                 type: 'line',
                 data: {
                     labels: allDates,
-                    datasets: [{
-                        label: 'Total Portfolio Value (¥)',
-                        data: allValues,
-                        borderColor: '#10b981',
-                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4
-                    }]
+                    datasets: [
+                        {
+                            label: 'Total Portfolio Value (¥)',
+                            data: allValues,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'A-Share Market Index',
+                            data: marketIndexData,
+                            borderColor: '#667eea',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.4,
+                            yAxisID: 'y1',
+                            pointStyle: false
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -415,13 +432,20 @@
                             intersect: false,
                             callbacks: {
                                 label: function(context) {
-                                    return `Portfolio Value: ¥${context.parsed.y.toLocaleString()}`;
+                                    if (context.datasetIndex === 0) {
+                                        return `Portfolio Value: ¥${context.parsed.y.toLocaleString()}`;
+                                    } else {
+                                        return `Market Index: ${context.parsed.y.toFixed(2)}`;
+                                    }
                                 }
                             }
                         }
                     },
                     scales: {
                         y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
                             beginAtZero: false,
                             title: {
                                 display: true,
@@ -430,6 +454,24 @@
                             ticks: {
                                 callback: function(value) {
                                     return '¥' + value.toLocaleString();
+                                }
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'Market Index'
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toFixed(2);
                                 }
                             }
                         }
