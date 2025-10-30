@@ -399,6 +399,17 @@
                     labels: allDates,
                     datasets: [
                         {
+                            label: 'A-Share Market Index',
+                            data: marketIndexData,
+                            borderColor: '#667eea',
+                            borderWidth: 4,
+                            borderDash: [5, 5], // Dotted line
+                            fill: false,
+                            tension: 0.4,
+                            yAxisID: 'y', // Left axis
+                            pointStyle: false
+                        },
+                        {
                             label: 'Total Portfolio Value (¥)',
                             data: allValues,
                             borderColor: '#10b981',
@@ -406,17 +417,7 @@
                             borderWidth: 3,
                             fill: true,
                             tension: 0.4,
-                            yAxisID: 'y'
-                        },
-                        {
-                            label: 'A-Share Market Index',
-                            data: marketIndexData,
-                            borderColor: '#667eea',
-                            borderWidth: 2,
-                            fill: false,
-                            tension: 0.4,
-                            yAxisID: 'y1',
-                            pointStyle: false
+                            yAxisID: 'y1' // Right axis
                         }
                     ]
                 },
@@ -433,9 +434,9 @@
                             callbacks: {
                                 label: function(context) {
                                     if (context.datasetIndex === 0) {
-                                        return `Portfolio Value: ¥${context.parsed.y.toLocaleString()}`;
-                                    } else {
                                         return `Market Index: ${context.parsed.y.toFixed(2)}`;
+                                    } else {
+                                        return `Portfolio Value: ¥${context.parsed.y.toLocaleString()}`;
                                     }
                                 }
                             }
@@ -449,11 +450,11 @@
                             beginAtZero: false,
                             title: {
                                 display: true,
-                                text: 'Portfolio Value (¥)'
+                                text: 'Market Index'
                             },
                             ticks: {
                                 callback: function(value) {
-                                    return '¥' + value.toLocaleString();
+                                    return value.toFixed(2);
                                 }
                             }
                         },
@@ -464,14 +465,14 @@
                             beginAtZero: false,
                             title: {
                                 display: true,
-                                text: 'Market Index'
+                                text: 'Portfolio Value (¥)'
                             },
                             grid: {
                                 drawOnChartArea: false,
                             },
                             ticks: {
                                 callback: function(value) {
-                                    return value.toFixed(2);
+                                    return '¥' + value.toLocaleString();
                                 }
                             }
                         }
